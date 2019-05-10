@@ -1,18 +1,21 @@
-QT += core gui
+#-------------------------------------------------
+#
+# Project created by QtCreator 2019-05-09T22:06:44
+#
+#-------------------------------------------------
+
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+TARGET = logplugin
+TEMPLATE = lib
+CONFIG += plugin
 
-TARGET = main
-CONFIG -= app_bundle
-
-TEMPLATE = app
-
-SOURCES += main.cpp
+DESTDIR = ../../bin/plugins
 
 # The following define makes your compiler emit warnings if you use
-# any feature of Qt which as been marked deprecated (the exact warnings
+# any feature of Qt which as been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -22,7 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-DESTDIR += ../../bin
+SOURCES += \
+        clogimpl.cpp \
+    clogactivator.cpp \
+    widget.cpp
+
+HEADERS += \
+        clogimpl.h \
+    clogactivator.h \
+    widget.h
+
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+}
+
 include(../include/include.pri)
 
 CONFIG(debug, debug|release){
@@ -31,6 +48,6 @@ CONFIG(debug, debug|release){
     LIBS += -L$$PWD/../libs/release  -lCTKCore -lCTKPluginFramework
 }
 
-HEADERS +=
-
+RESOURCES += \
+    resource.qrc
 

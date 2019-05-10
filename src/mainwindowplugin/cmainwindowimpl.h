@@ -2,22 +2,25 @@
 #define CMAINWINDOWIMPL_H
 
 #include <QObject>
-#include "cuiinterface.h"
+#include "cservice.h"
+
+class Widget;
 
 
-class CMainWindowImpl : public QObject, public CUiInterface
+class CMainWindowImpl : public QObject, public CMainWindowService
 {
     Q_OBJECT
-    Q_INTERFACES(CUiInterface)
+    Q_INTERFACES(CMainWindowService)
 
 public:
     CMainWindowImpl(QObject *parent = 0);
+    ~CMainWindowImpl();
 
-    QString GetPluginName();
-    QString GetTitle();
-    QWidget *GetWidget();
+    QMainWindow *GetMainWindow();
     void ShowWidget();
-    bool AddToolBarAction(QAction *action);
+
+private:
+    Widget *m_pWidget;
 };
 
 #endif // CMAINWINDOWIMPL_H

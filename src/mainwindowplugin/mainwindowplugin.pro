@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TARGET = mainwindowplugin
 TEMPLATE = lib
 CONFIG += plugin
@@ -25,12 +27,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         cmainwindowimpl.cpp \
-    cmainwindowactivator.cpp
+    cmainwindowactivator.cpp \
+    widget.cpp
 
 HEADERS += \
         cmainwindowimpl.h \
-    cmainwindowactivator.h
-DISTFILES += mainwindowplugin.json  
+    cmainwindowactivator.h \
+    widget.h
 
 unix {
     target.path = /usr/lib

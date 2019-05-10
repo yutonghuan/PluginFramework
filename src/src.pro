@@ -4,4 +4,5 @@ CONFIG += ordered
 
 SUBDIRS += \
     main \
-    mainwindowplugin
+    mainwindowplugin \
+    logplugin \

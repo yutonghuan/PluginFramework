@@ -1,33 +1,31 @@
 #include "cmainwindowimpl.h"
+#include "widget.h"
 
+#include <QToolBar>
 
 CMainWindowImpl::CMainWindowImpl(QObject *parent) :
     QObject (parent)
 {
+    m_pWidget = new Widget;
 }
 
-QString CMainWindowImpl::GetPluginName()
+CMainWindowImpl::~CMainWindowImpl()
 {
-    return "mainwindowplugin";
+    if (m_pWidget != nullptr)
+    {
+        delete m_pWidget;
+        m_pWidget = nullptr;
+    }
 }
 
-QString CMainWindowImpl::GetTitle()
+QMainWindow *CMainWindowImpl::GetMainWindow()
 {
-    return "MainWindow";
-}
-
-QWidget *CMainWindowImpl::GetWidget()
-{
-    return nullptr;
+    return m_pWidget;
 }
 
 void CMainWindowImpl::ShowWidget()
 {
-
+    m_pWidget->show();
 }
 
-bool CMainWindowImpl::AddToolBarAction(QAction *action)
-{
-    return true;
-}
 

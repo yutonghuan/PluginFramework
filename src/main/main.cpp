@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+#include <QApplication>
 #include <QSharedPointer>
 #include <QDirIterator>
 #include <QDebug>
@@ -7,12 +7,12 @@
 #include "PluginFramework/ctkPluginFrameworkFactory.h"
 #include "PluginFramework/ctkPluginException.h"
 #include "PluginFramework/ctkPluginContext.h"
-#include "cuiinterface.h"
+#include "cservice.h"
 
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
 
     ctkPluginFrameworkFactory frameworkFactory;
     QSharedPointer<ctkPluginFramework> framework = frameworkFactory.getFramework();
@@ -56,38 +56,41 @@ int main(int argc, char *argv[])
     }
 
     // 1. 获取所有服务
-    QList<ctkServiceReference> refs = context->getServiceReferences<CUiInterface>();
+//    QList<ctkServiceReference> refs = context->getServiceReferences<CUiService>();
+//    foreach (ctkServiceReference ref, refs)
+//    {
+//        if (ref)
+//        {
+//            qDebug() << "Name:"             << ref.getProperty("name").toString()
+//                     <<  "Service ranking:" << ref.getProperty(ctkPluginConstants::SERVICE_RANKING).toLongLong()
+//                     << "Service id:"       << ref.getProperty(ctkPluginConstants::SERVICE_ID).toLongLong();
+//            CUiService* service = qobject_cast<CUiService*>(context->getService(ref));
+//            if (service != nullptr)
+//                service->ShowWidget();
+//        }
+//    }
+
+
+    // 2. 使用过滤表达式，获取感兴趣的服务
+    QList<ctkServiceReference> refs = context->getServiceReferences<CMainWindowService>("(&(name=mainwindow))");
     foreach (ctkServiceReference ref, refs)
     {
-        if (ref) {
-            qDebug() << "Name:" << ref.getProperty("name").toString()
-                     <<  "Service ranking:" << ref.getProperty(ctkPluginConstants::SERVICE_RANKING).toLongLong()
-                      << "Service id:" << ref.getProperty(ctkPluginConstants::SERVICE_ID).toLongLong();
-            CUiInterface* service = qobject_cast<CUiInterface*>(context->getService(ref));
+        if (ref)
+        {
+            CMainWindowService* service = qobject_cast<CMainWindowService*>(context->getService(ref));
             if (service != Q_NULLPTR)
-                qDebug()<<service->GetPluginName();
+                service->ShowWidget();
         }
     }
 
 
-//    // 2. 使用过滤表达式，获取感兴趣的服务
-//    refs = context->getServiceReferences<WelcomeService>("(&(name=CTK))");
-//    foreach (ctkServiceReference ref, refs) {
-//        if (ref) {
-//            WelcomeService* service = qobject_cast<WelcomeService *>(context->getService(ref));
-//            if (service != Q_NULLPTR)
-//                service->welcome();
-//        }
-//    }
-
-//    qDebug() << "********************";
-
-//    // 3. 获取某一个服务（由 Service Ranking 和 Service ID 决定）
-//    ctkServiceReference ref = context->getServiceReference<WelcomeService>();
-//    if (ref) {
-//        WelcomeService* service = qobject_cast<WelcomeService *>(context->getService(ref));
+    // 3. 获取某一个服务（由 Service Ranking 和 Service ID 决定）
+//    ctkServiceReference ref = context->getServiceReference<CUiService>();
+//    if (ref)
+//    {
+//        CUiService* service = qobject_cast<CUiService *>(context->getService(ref));
 //        if (service != Q_NULLPTR)
-//            service->welcome();
+//            service->ShowWidget();
 //    }
 
     return a.exec();
