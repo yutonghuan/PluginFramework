@@ -28,6 +28,16 @@ CLogImpl::~CLogImpl()
     }
 }
 
+void CLogImpl::ServiceTrackerCallBack(CService *service)
+{
+    Q_UNUSED(service);
+}
+
+CService::ServiceType CLogImpl::GetServiceType()
+{
+    return CService::ActionService;
+}
+
 QAction *CLogImpl::GetAction()
 {
     return m_pAction;

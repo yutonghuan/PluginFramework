@@ -6,4 +6,3 @@ Plugin-Description: A plugin for welcome Qt
 Plugin-Name: logplugin
 Plugin-Vendor: Waleon
 Plugin-Version: 1.0.0
-Require-Plugin:mainwindowplugin

@@ -23,7 +23,7 @@
 #ifndef CTKSERVICETRACKERCUSTOMIZER_H
 #define CTKSERVICETRACKERCUSTOMIZER_H
 
-#include <ctkServiceReference.h>
+#include "ctkServiceReference.h"
 
 
 /**

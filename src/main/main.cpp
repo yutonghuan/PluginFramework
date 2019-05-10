@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 
     // 2. 使用过滤表达式，获取感兴趣的服务
-    QList<ctkServiceReference> refs = context->getServiceReferences<CMainWindowService>("(&(name=mainwindow))");
+    QList<ctkServiceReference> refs = context->getServiceReferences<CMainWindowService>("(&(type=mainwindow))");
     foreach (ctkServiceReference ref, refs)
     {
         if (ref)
@@ -84,8 +84,9 @@ int main(int argc, char *argv[])
     }
 
 
+
     // 3. 获取某一个服务（由 Service Ranking 和 Service ID 决定）
-//    ctkServiceReference ref = context->getServiceReference<CUiService>();
+//    ctkServiceReference ref = context->getServiceReference<CMainWindowService>();
 //    if (ref)
 //    {
 //        CUiService* service = qobject_cast<CUiService *>(context->getService(ref));

@@ -4,6 +4,7 @@
 #include "PluginFramework/ctkPluginActivator.h"
 
 class CMainWindowImpl;
+class CServiceTracker;
 
 class CMainWindowActivator : public QObject, public ctkPluginActivator
 {
@@ -17,6 +18,8 @@ public:
 
 private:
     CMainWindowImpl *m_pImpl;
+    CServiceTracker *m_pTracker;
+    ctkServiceRegistration m_Registration;
 };
 
 #endif // CMAINWINDOWACTIVATOR_H

@@ -7,11 +7,24 @@ class QWidget;
 class QAction;
 class QMainWindow;
 
+
 //所有插件的接口
 class CService
 {
 public:
+    enum ServiceType
+    {
+        ActionService,
+        MainWindowService,
+        WidgetService,
+    };
     virtual ~CService(){}
+
+    //用于服务追踪的回调函数
+    virtual void ServiceTrackerCallBack(CService *service) = 0;
+
+    //获取服务类型
+    virtual ServiceType GetServiceType() = 0;
 };
 #define CService_iid "CService"
 Q_DECLARE_INTERFACE(CService, CService_iid)
@@ -28,7 +41,7 @@ public:
 Q_DECLARE_INTERFACE(CUiService, CUiService_iid)
 
 
-class CActionService : public virtual CUiService
+class CActionService : public CUiService
 {
 public:
     virtual ~CActionService(){}
@@ -39,7 +52,7 @@ public:
 Q_DECLARE_INTERFACE(CActionService, CActionService_iid)
 
 
-class CMainWindowService : public virtual CUiService
+class CMainWindowService : public CUiService
 {
 public:
     virtual ~CMainWindowService(){}
@@ -51,7 +64,7 @@ public:
 Q_DECLARE_INTERFACE(CMainWindowService, CMainWindowService_iid)
 
 
-class CWidgetService : public virtual CUiService
+class CWidgetService : public CUiService
 {
 public:
     virtual ~CWidgetService(){}

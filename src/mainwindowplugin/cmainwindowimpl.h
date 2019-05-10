@@ -13,11 +13,13 @@ class CMainWindowImpl : public QObject, public CMainWindowService
     Q_INTERFACES(CMainWindowService)
 
 public:
-    CMainWindowImpl(QObject *parent = 0);
-    ~CMainWindowImpl();
+    CMainWindowImpl(QObject *parent = nullptr);
+    ~CMainWindowImpl() Q_DECL_OVERRIDE;
 
-    QMainWindow *GetMainWindow();
-    void ShowWidget();
+    void ServiceTrackerCallBack(CService *service) Q_DECL_OVERRIDE;
+    ServiceType GetServiceType() Q_DECL_OVERRIDE;
+    QMainWindow *GetMainWindow() Q_DECL_OVERRIDE;
+    void ShowWidget() Q_DECL_OVERRIDE;
 
 private:
     Widget *m_pWidget;

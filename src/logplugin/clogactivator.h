@@ -17,6 +17,7 @@ public:
 
 private:
     CLogImpl *m_pImpl;
+    ctkServiceRegistration m_Registration;
 };
 
 #endif // CLOGACTIVATOR_H
