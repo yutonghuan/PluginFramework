@@ -43,9 +43,9 @@ unix {
 include(../include/include.pri)
 
 CONFIG(debug, debug|release){
-    LIBS += -L$$PWD/../libs/debug  -lCTKCore -lCTKPluginFramework
+    LIBS += -L$$PWD/../libs/debug  -lCTKCore -lCTKPluginFramework -lCTKWidgets
 }else{
-    LIBS += -L$$PWD/../libs/release  -lCTKCore -lCTKPluginFramework
+    LIBS += -L$$PWD/../libs/release  -lCTKCore -lCTKPluginFramework -lCTKWidgets
 }
 
 RESOURCES += \

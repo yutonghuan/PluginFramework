@@ -1,15 +1,15 @@
 #include "cmainwindowactivator.h"
 #include "cmainwindowimpl.h"
 #include "cservicetracker.h"
-
-#include <QDebug>
+#include "PluginFramework/service/event/ctkEventAdmin.h"
 
 
 void CMainWindowActivator::start(ctkPluginContext *context)
 {
     ctkDictionary properties;
     properties.insert(ctkPluginConstants::SERVICE_RANKING, 1);
-    properties.insert("type", "mainwindow");
+    properties.insert("name", "mainwindow");
+
 
     m_pImpl = new CMainWindowImpl;
     m_Registration = context->registerService<CMainWindowService>(m_pImpl, properties);
@@ -23,11 +23,8 @@ void CMainWindowActivator::stop(ctkPluginContext *context)
 {
     Q_UNUSED(context)
 
-    //注销服务
     m_Registration.unregister();
 
     //关闭服务跟踪器
     m_pTracker->close();
-
-    delete m_pImpl;
 }

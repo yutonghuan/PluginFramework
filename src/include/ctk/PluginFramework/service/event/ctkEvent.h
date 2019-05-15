@@ -28,7 +28,7 @@
 #include <QVariant>
 #include <QStringList>
 
-#include <ctkLDAPSearchFilter.h>
+#include "ctkLDAPSearchFilter.h"
 
 
 class ctkEventData;

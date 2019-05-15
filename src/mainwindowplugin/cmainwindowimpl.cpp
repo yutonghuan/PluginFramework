@@ -1,5 +1,7 @@
 #include "cmainwindowimpl.h"
 #include "widget.h"
+#include "PluginFramework/ctkPluginContext.h"
+#include "PluginFramework/ctkPluginFrameworkLauncher.h"
 
 #include <QToolBar>
 #include <QDebug>
@@ -7,7 +9,7 @@
 CMainWindowImpl::CMainWindowImpl(QObject *parent) :
     QObject (parent)
 {
-    m_pWidget = new Widget;
+    m_pWidget = new Widget();
 }
 
 CMainWindowImpl::~CMainWindowImpl()
@@ -21,15 +23,20 @@ CMainWindowImpl::~CMainWindowImpl()
 
 void CMainWindowImpl::ServiceTrackerCallBack(CService *service)
 {
+    ctkPluginContext *context = ctkPluginFrameworkLauncher::getPluginContext();
     if (service->GetServiceType() == CService::ActionService)
     {
-        CActionService *actionService = static_cast<CActionService*>(service);
-        QMainWindow *mainWindow = GetMainWindow();
-        if (mainWindow)
+        ctkServiceReference ref = context->getServiceReference<CActionService>();
+        if (ref)
         {
-            QToolBar *toolBar = mainWindow->addToolBar("commonToolBar");
-            toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-            toolBar->addAction(actionService->GetAction());
+            CActionService *actionService = context->getService<CActionService>(ref);
+            QMainWindow *mainWindow = GetMainWindow();
+            if (mainWindow)
+            {
+                static QToolBar *toolBar = mainWindow->addToolBar("commonToolBar");
+                toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+                toolBar->addAction(actionService->GetAction());
+            }
         }
     }
 }

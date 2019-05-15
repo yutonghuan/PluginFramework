@@ -3,13 +3,14 @@
 
 #include <QAction>
 #include <QIcon>
+#include <QDebug>
 
 CLogImpl::CLogImpl(QObject *parent) :
     QObject (parent)
 {
     m_pWidget = new Widget;
 
-    m_pAction = new QAction(QIcon(":/icons/log"), tr("日志信息"));
+    m_pAction = new QAction(QIcon(":/icons/log"), tr("日志信息"), this);
     connect(m_pAction, &QAction::triggered, [=](){this->ShowWidget();});
 }
 

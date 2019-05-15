@@ -15,13 +15,13 @@ class CLogImpl : public QObject, public CActionService, public CWidgetService
 
 public:
     CLogImpl(QObject *parent = nullptr);
-    ~CLogImpl() Q_DECL_OVERRIDE;
+    ~CLogImpl();
 
-    void ServiceTrackerCallBack(CService *service) Q_DECL_OVERRIDE;
-    ServiceType GetServiceType() Q_DECL_OVERRIDE;
-    QAction *GetAction() Q_DECL_OVERRIDE;
-    QWidget *GetWidget() Q_DECL_OVERRIDE;
-    void ShowWidget() Q_DECL_OVERRIDE;
+    void ServiceTrackerCallBack(CService *service);
+    ServiceType GetServiceType();
+    QAction *GetAction();
+    QWidget *GetWidget();
+    void ShowWidget();
 
 private:
     Widget *m_pWidget;

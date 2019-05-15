@@ -29,11 +29,13 @@ protected:
     void modifiedService(const ctkServiceReference &reference, CService *service) Q_DECL_OVERRIDE
     {
         ctkServiceTracker::modifiedService(reference, service);
+        qDebug()<<"plugin updated...";
     }
 
     void removedService(const ctkServiceReference& reference, CService *service) Q_DECL_OVERRIDE
     {
         ctkServiceTracker::removedService(reference, service);
+        qDebug()<<"plugin removed...";
     }
 
 private:
