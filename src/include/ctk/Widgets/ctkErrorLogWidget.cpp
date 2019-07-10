@@ -142,7 +142,7 @@ void ctkErrorLogWidget::setErrorLogModel(ctkErrorLogAbstractModel * newErrorLogM
 
   d->ErrorLogTableView->setModel(newErrorLogModel);
 
-  if (newErrorLogModel)
+  if (newErrorLogModel)720
     {
     connect(this->errorLogModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
             this, SLOT(onRowsInserted(QModelIndex,int,int)));

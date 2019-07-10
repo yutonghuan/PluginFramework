@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/mainwindowplugin/META-INF">
-        <file>MANIFEST.MF</file>
-    </qresource>
-</RCC>

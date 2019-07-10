@@ -1,0 +1,45 @@
+    QToolBar *toolBar = new QToolBar;
+    toolBar->setMovable(false);
+    toolBar->setFixedSize(80, 32);
+    toolBar->setStyleSheet("border-image:url(:/images/statusBackground)");
+    addToolBar(Qt::LeftToolBarArea, toolBar);
+
+    m_pTitleToolBar = new QToolBar;
+    m_pTitleToolBar->setOrientation(Qt::Vertical);
+    m_pTitleToolBar->setFixedWidth(80);
+    m_pTitleToolBar->setMovable(false);
+    m_pTitleToolBar->setStyleSheet("border-image:url(:/images/titleBackground)");
+    addToolBar(Qt::LeftToolBarArea, m_pTitleToolBar);
+
+
+//    // Æô¶¯²å¼þ
+//    try {
+//        QSharedPointer<ctkPlugin> plugin = context->installPlugin(QUrl::fromLocalFile(path + "/mainwindowplugin.dll"));
+//        plugin->start(ctkPlugin::START_TRANSIENT);
+//        qDebug() << "plugin start ...";
+//    } catch (const ctkPluginException &e) {
+//        qDebug() << "Failed to start plugin." << e.what();
+//    }
+
+//    ctkServiceReference ref = context->getServiceReference<CMainWindowService>();
+//    if (ref)
+//    {
+//        CMainWindowService* service = qobject_cast<CMainWindowService *>(context->getService(ref));
+//        if (service != Q_NULLPTR)
+//            service->ShowWidget();
+//    }
+
+
+//    ref = context->getServiceReference<ctkConfigurationAdmin>();
+//    if (ref)
+//    {
+//        ctkConfigurationAdmin *configAdmin = context->getService<ctkConfigurationAdmin>(ref);
+//        ctkConfigurationPtr config = configAdmin->getConfiguration("logplugin");
+
+
+//        ctkDictionary defaults;
+//        defaults.insert("name", "yutonghuan hello");
+
+//        config->update(defaults);
+
+//    }

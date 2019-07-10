@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/background">
+        <file alias="toolButtonChecked">images/toolButtonChecked.png</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file>style.qss</file>
+    </qresource>
+    <qresource prefix="/qm">
+        <file>main.qm</file>
+    </qresource>
+</RCC>
